@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fish On Dish | Konkan, Malvani & North Indian Cuisine</title>
     <meta name="description" content="Fish On Dish Pune - Authentic Maharashtrian, Malvani, and Konkani coastal seafood. Signature Fish in Boat Platter and Surmai Thali. Locations in Kothrud and Wakad.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
     <!-- Remix Icon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -26,6 +26,7 @@
             --border-radius: 12px;
             --container-width: 1200px;
             --transition: all 0.3s ease;
+            --header-height: 70px;
         }
 
         * {
@@ -46,11 +47,13 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary-color);
+            line-height: 1.2;
         }
 
         a {
@@ -66,6 +69,7 @@
         img {
             max-width: 100%;
             display: block;
+            height: auto;
         }
 
         /* --- UTILITIES --- */
@@ -76,7 +80,7 @@
         }
 
         .section-padding {
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .text-center {
@@ -84,8 +88,11 @@
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
             border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
@@ -136,7 +143,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 10px;
             display: block;
         }
@@ -148,28 +155,30 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            height: var(--header-height);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 100%;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--primary-color);
             display: flex;
             align-items: center;
             gap: 8px;
+            z-index: 1002; /* Above mobile menu overlay */
         }
 
         .logo i {
             color: var(--secondary-color);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
 
         .nav-links {
@@ -201,9 +210,12 @@
 
         .mobile-menu-btn {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
             cursor: pointer;
+            z-index: 1002;
+            background: none;
+            border: none;
         }
 
         /* --- PAGE STRUCTURE (SPA) --- */
@@ -215,7 +227,7 @@
         .page-section {
             display: none; /* Hidden by default */
             animation: fadeIn 0.5s ease-in-out;
-            padding-bottom: 60px;
+            padding-bottom: 40px;
         }
 
         .page-section.active-page {
@@ -231,53 +243,67 @@
         .hero {
             background: linear-gradient(rgba(0, 78, 100, 0.75), rgba(0, 78, 100, 0.6)), 
                         url('https://picsum.photos/seed/seafoodfeast/1920/1080') no-repeat center center/cover;
-            height: 85vh;
+            height: 80vh;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
+            padding: 0 20px;
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
             color: var(--white);
-            line-height: 1.1;
         }
         
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: rgba(255,255,255, 0.9);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
         
         .feature-item {
             text-align: center;
-            padding: 30px;
+            padding: 40px 25px;
             background: #fff;
             border-radius: var(--border-radius);
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
         }
         
         .feature-icon {
             font-size: 2.5rem;
             color: var(--secondary-color);
             margin-bottom: 15px;
+            display: inline-block;
         }
 
         /* --- MENU PAGE STYLES --- */
         .menu-header-bg {
             background-color: var(--accent-bg);
-            padding: 60px 0;
+            padding: 60px 20px;
             text-align: center;
             margin-bottom: 40px;
         }
 
         .signature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -317,7 +343,7 @@
             color: var(--primary-color);
             padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             display: inline-block;
@@ -341,11 +367,13 @@
             justify-content: space-between;
         }
 
+        .cat-header h3 { color: white; font-size: 1.4rem; }
+
         .menu-list {
             padding: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 40px 25px;
         }
 
         .menu-item {
@@ -382,11 +410,19 @@
             color: var(--text-light);
         }
 
+        .menu-list h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-bg);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
         /* --- LOCATIONS PAGE STYLES --- */
         .locations-hero {
             background-color: var(--primary-color);
             color: white;
-            padding: 80px 0;
+            padding: 60px 20px;
             text-align: center;
             margin-bottom: 50px;
         }
@@ -436,12 +472,13 @@
         .loc-info-row i {
             color: var(--secondary-color);
             margin-top: 4px;
+            flex-shrink: 0;
         }
 
         /* --- CONTACT/BOOKING PAGE STYLES --- */
         .contact-hero {
             background-color: var(--accent-bg);
-            padding: 80px 0;
+            padding: 60px 20px;
             text-align: center;
         }
 
@@ -468,11 +505,12 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--primary-color);
+            font-size: 0.9rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-family: 'Lato', sans-serif;
@@ -483,7 +521,7 @@
 
         select.form-control {
             cursor: pointer;
-            appearance: none; /* Custom arrow usually preferred, but standard is fine for plain HTML */
+            appearance: none; 
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23004e64' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
             background-position: right 15px center;
@@ -512,9 +550,9 @@
         
         .delivery-links {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             margin-top: 20px;
-            flex-wrap: wrap;
             justify-content: center;
         }
 
@@ -538,23 +576,112 @@
         .footer-links li { margin-bottom: 10px; }
         .footer-links a:hover { color: var(--secondary-color); }
 
-        /* --- MOBILE --- */
-        @media (max-width: 768px) {
-            .nav-links { 
-                display: none; 
-                position: absolute; 
-                top: 80px; left: 0; width: 100%; 
-                background: var(--white); 
-                flex-direction: column; 
-                padding: 20px; 
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1); 
-                text-align: center;
-            }
-            .nav-links.active { display: flex; }
-            .mobile-menu-btn { display: block; }
-            .hero-content h1 { font-size: 2.5rem; }
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        
+        /* Tablets & Small Screens */
+        @media (max-width: 992px) {
             .contact-grid { grid-template-columns: 1fr; }
-            .menu-list { grid-template-columns: 1fr; }
+            .locations-grid { grid-template-columns: 1fr; }
+            .signature-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 60px;
+            }
+
+            /* Mobile Nav Styles */
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Hidden off-screen */
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                padding: 40px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            /* Overlay when menu is open */
+            .nav-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .nav-overlay.active {
+                display: block;
+                opacity: 1;
+            }
+
+            /* Typography */
+            .hero-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            
+            /* Layouts */
+            .hero { height: 60vh; min-height: 400px; }
+            
+            /* Menu Grids */
+            .menu-list {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            /* Features */
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Buttons */
+            .btn {
+                width: 100%; /* Full width buttons on mobile for easy tap */
+                margin-bottom: 10px;
+                margin-left: 0 !important; /* Override margin left */
+            }
+            
+            .hero-content .btn {
+                width: auto; /* Keep hero buttons inline if space permits, or stack */
+                min-width: 200px;
+            }
+        }
+
+        /* Very Small Screens */
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 2rem; }
+            .section-padding { padding: 40px 0; }
+            .container { padding: 0 15px; }
+            
+            .contact-form { padding: 25px; }
+            .delivery-card { padding: 30px 20px; }
+            
+            .hero-content .btn {
+                width: 100%;
+                margin-left: 0;
+            }
         }
     </style>
 </head>
@@ -567,15 +694,18 @@
                 <a href="#" onclick="switchPage('home')" class="logo">
                     <i class="ri-anchor-fill"></i> Fish On Dish
                 </a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                    <i class="ri-menu-line" id="menuIcon"></i>
+                </button>
+                <!-- Overlay Div -->
+                <div class="nav-overlay" onclick="toggleMobileMenu()" id="navOverlay"></div>
+                
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#" onclick="switchPage('home')" id="link-home" class="active-link">Home</a></li>
                     <li><a href="#" onclick="switchPage('menu')" id="link-menu">Menu</a></li>
                     <li><a href="#" onclick="switchPage('locations')" id="link-locations">Locations</a></li>
                     <li><a href="#" onclick="switchPage('contact')" id="link-contact">Book Table</a></li>
                 </ul>
-                <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                    <i class="ri-menu-line"></i>
-                </div>
             </nav>
         </div>
     </header>
@@ -587,9 +717,9 @@
                 <div class="hero-content">
                     <h1>Konkan Coast &<br>North Indian Flavors</h1>
                     <p>Experience the authentic taste of Maharashtra's coastline with our signature Malvani seafood and traditional Thalis.</p>
-                    <div style="margin-top: 30px;">
+                    <div>
                         <a href="#" onclick="switchPage('menu')" class="btn btn-primary">View Full Menu</a>
-                        <a href="#" onclick="switchPage('contact')" class="btn btn-outline" style="margin-left: 10px;">Book Table</a>
+                        <a href="#" onclick="switchPage('contact')" class="btn btn-outline">Book Table</a>
                     </div>
                 </div>
             </section>
@@ -624,8 +754,8 @@
                     </div>
 
                     <!-- Teaser Menu -->
-                    <div class="text-center" style="margin-top: 80px;">
-                        <a href="#" onclick="switchPage('menu')" class="btn btn-primary btn-lg">Explore Our Menu</a>
+                    <div class="text-center" style="margin-top: 60px;">
+                        <a href="#" onclick="switchPage('menu')" class="btn btn-primary">Explore Our Menu</a>
                     </div>
                 </div>
             </section>
@@ -673,18 +803,18 @@
                     </div>
                     <div class="menu-list">
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Aalni (Broth)</h4>
+                            <h4 style="color:var(--secondary-color);">Aalni (Broth)</h4>
                             <div class="menu-item"><span class="item-name"><i class="ri-drop-line item-icon"></i>Chicken Aalni</span></div>
                             <div class="menu-item"><span class="item-name"><i class="ri-drop-line item-icon"></i>Prawns Aalni</span></div>
                         </div>
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Surmai Starters</h4>
+                            <h4 style="color:var(--secondary-color);">Surmai Starters</h4>
                             <div class="menu-item"><span class="item-name">Surmai Tawa Fry</span></div>
                             <div class="menu-item"><span class="item-name">Surmai Rava Fry</span></div>
                             <div class="menu-item"><span class="item-name">Surmai Grilled</span></div>
                         </div>
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Prawns Starters</h4>
+                            <h4 style="color:var(--secondary-color);">Prawns Starters</h4>
                             <div class="menu-item"><span class="item-name">Prawns Butter Garlic</span></div>
                             <div class="menu-item"><span class="item-name">Crunchy Coconut Prawns</span></div>
                             <div class="menu-item"><span class="item-name">Prawns Tempura</span></div>
@@ -700,18 +830,18 @@
                     </div>
                     <div class="menu-list">
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Maharashtrian</h4>
+                            <h4 style="color:var(--secondary-color);">Maharashtrian</h4>
                             <div class="menu-item"><span class="item-name">Pomfret Curry</span></div>
                             <div class="menu-item"><span class="item-name">Surmai Curry</span></div>
                             <div class="menu-item"><span class="item-name">Bangda Curry</span></div>
                         </div>
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Malvani</h4>
+                            <h4 style="color:var(--secondary-color);">Malvani</h4>
                             <div class="menu-item"><span class="item-name">Surmai Malvani</span></div>
                             <div class="menu-item"><span class="item-name">Prawns Malvani</span></div>
                         </div>
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Veg & Chicken</h4>
+                            <h4 style="color:var(--secondary-color);">Veg & Chicken</h4>
                             <div class="menu-item"><span class="item-name">Chicken Maratha</span></div>
                             <div class="menu-item"><span class="item-name"><i class="ri-leaf-line item-icon"></i>Paneer Tikka Masala</span></div>
                             <div class="menu-item"><span class="item-name"><i class="ri-leaf-line item-icon"></i>Kaju Masala</span></div>
@@ -727,12 +857,12 @@
                     </div>
                     <div class="menu-list">
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Biryani</h4>
+                            <h4 style="color:var(--secondary-color);">Biryani</h4>
                             <div class="menu-item"><span class="item-name">Chicken Biryani</span></div>
                             <div class="menu-item"><span class="item-name">Prawns Biryani</span></div>
                         </div>
                         <div>
-                            <h4 style="margin-bottom:15px; color:var(--secondary-color);">Traditional</h4>
+                            <h4 style="color:var(--secondary-color);">Traditional</h4>
                             <div class="menu-item"><span class="item-name">Rice Bhakri</span></div>
                             <div class="menu-item"><span class="item-name">Chapati</span></div>
                             <div class="menu-item"><span class="item-name">Solkadhi</span></div>
@@ -759,7 +889,7 @@
                 <div class="locations-grid">
                     <!-- Kothrud -->
                     <div class="location-card">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF82acjJ46suDZWw_RYL-qErt2E7wPUkI3AXm8FcZT94FfSSFN-PWq1koAhC1DEg7GFK-lT4dcPmQQJFDmPFyFIKh3tbtozusvoFZTjUIEQqd2RSch5hcC1vzHQzUof1DDv9lo=w289-h312-n-k-no" alt="Kothrud Outlet" class="loc-map-placeholder">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAF82acjJ46suDZWw_RYL-qErt2E7wPUkI3AXm8FcZT94FfSSFN-PWq1koAhC1DEg7GFK-lT4dcPmQQJFDmPFyFIKh3tbtozusvoFZTjUIEQqd2RSch5hcC1vzHQzUof1DDv9lo=w408-h272-k-no" alt="Kothrud Outlet" class="loc-map-placeholder">
                         <div class="loc-details">
                             <h3 class="loc-title">Kothrud</h3>
                             <div class="loc-info-row">
@@ -775,14 +905,14 @@
                                 <span>+91 8308899667</span>
                             </div>
                             <div style="margin-top: 20px;">
-                                <a href="https://maps.app.goo.gl/AnJWhYJBLjHzmtHk6" class="btn btn-dark-outline">Get Directions</a>
+                                <a href="https://maps.app.goo.gl/AnJWhYJBLjHzmtHk6" class="btn btn-dark-outline" target="_blank">Get Directions</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Wakad -->
                     <div class="location-card">
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGM7qMI4Hb_jRHtWwWImEm8b-mgsVs0oG5rB7_Gsn4TeLUqmazZdE-HcPbkyMiTe2sxQdWrmZWI288k1oYdfbPa15jTKGKimeXvSHbOgZ4tj1QJSOFtZgfV9ktr1mSShVVe1T_XBgl_hXM=w145-h156-n-k-no" alt="Wakad Outlet" class="loc-map-placeholder">
+                        <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAH-t2pAmncpoHjmCtIauUo9ZErYBVAe2meNGfYBYGwc9jFzUifsIxR9XktFgetZnpi_OBunUaFSc_pcFz7hhAD0VYNw8hwDmtX9YUMmhmEVhBPIiRApqipVd1FLYUG9btqBM-MY=w408-h306-k-no" alt="Wakad Outlet" class="loc-map-placeholder">
                         <div class="loc-details">
                             <h3 class="loc-title">Wakad</h3>
                             <div class="loc-info-row">
@@ -798,7 +928,7 @@
                                 <span>+91 8308899669</span>
                             </div>
                             <div style="margin-top: 20px;">
-                                <a href="https://maps.app.goo.gl/YvbXW6bbVE1VdRNT6" class="btn btn-dark-outline">Get Directions</a>
+                                <a href="https://maps.app.goo.gl/YvbXW6bbVE1VdRNT6" class="btn btn-dark-outline" target="_blank">Get Directions</a>
                             </div>
                         </div>
                     </div>
@@ -942,26 +1072,49 @@
                 link.classList.remove('active-link');
             });
             
-            // Add active class to the clicked link (or corresponding link if clicked from footer/hero)
+            // Add active class to the clicked link
             const activeLink = document.getElementById('link-' + pageId);
             if (activeLink) {
                 activeLink.classList.add('active-link');
             }
 
             // 4. Scroll to top
-            window.scrollTo(0, 0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
 
             // 5. Close mobile menu if open
-            const navLinks = document.getElementById('navLinks');
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
+            closeMobileMenu();
         }
 
         // --- MOBILE MENU TOGGLE ---
         function toggleMobileMenu() {
             const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+            const overlay = document.getElementById('navOverlay');
+            const menuIcon = document.getElementById('menuIcon');
+            
+            const isActive = navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+
+            // Toggle Icon Class
+            if (isActive) {
+                menuIcon.classList.remove('ri-menu-line');
+                menuIcon.classList.add('ri-close-line');
+            } else {
+                menuIcon.classList.remove('ri-close-line');
+                menuIcon.classList.add('ri-menu-line');
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const overlay = document.getElementById('navOverlay');
+            const menuIcon = document.getElementById('menuIcon');
+
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                menuIcon.classList.remove('ri-close-line');
+                menuIcon.classList.add('ri-menu-line');
+            }
         }
 
         // --- FORM HANDLING ---
@@ -981,23 +1134,38 @@
                 btn.innerText = "Booking Confirmed!";
                 btn.style.backgroundColor = "#28a745"; // Green color
                 
-                // Show toast/message
-                const formData = new FormData(event.target);
-                // Reset form after delay
+                // Show alert feedback
                 setTimeout(() => {
                     event.target.reset();
                     btn.innerText = originalText;
                     btn.style.backgroundColor = ""; // Revert to CSS variable color
                     btn.style.opacity = "1";
                     btn.disabled = false;
-                    alert("Thank you! Your table has been booked successfully. We will confirm via SMS shortly.");
+                    
+                    // Use a custom visual feedback instead of native alert if possible, 
+                    // but per request for single file simplicity, alert is acceptable fallback
+                    // or we can insert a temporary message in DOM.
+                    const msgDiv = document.createElement('div');
+                    msgDiv.style.position = 'fixed';
+                    msgDiv.style.bottom = '20px';
+                    msgDiv.style.left = '50%';
+                    msgDiv.style.transform = 'translateX(-50%)';
+                    msgDiv.style.background = '#333';
+                    msgDiv.style.color = '#fff';
+                    msgDiv.style.padding = '12px 24px';
+                    msgDiv.style.borderRadius = '8px';
+                    msgDiv.style.zIndex = '2000';
+                    msgDiv.innerText = "Thank you! Your table has been booked.";
+                    document.body.appendChild(msgDiv);
+                    
+                    setTimeout(() => msgDiv.remove(), 3000);
+
                 }, 1500);
             }, 1000);
         }
 
-        // Initialize (optional, in case URL has hash on load)
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Default to home if nothing selected
             switchPage('home');
         });
     </script>
